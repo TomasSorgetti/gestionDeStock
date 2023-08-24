@@ -23,11 +23,13 @@ const Login = () => {
   };
   return (
     <section className="flex items-center h-screen">
-      <article className="h-full w-6/12 bg-primaryColor flex flex-col items-center justify-center">
+      <article className="relative h-full w-6/12 bg-primaryColor flex flex-col items-center justify-center">
         <img className="" src={Logo} alt="logo" />
-        <p className="absolute left-40 bottom-6 text-[26px] font-bold text-white">
-          Tené el control de tu negocio
-        </p>
+        <div className="absolute bottom-6 w-full text-center">
+          <p className="text-[26px] font-bold text-white">
+            Tené el control de tu negocio
+          </p>
+        </div>
       </article>
 
       <article className="h-full w-6/12 flex flex-col justify-center bg-white">
