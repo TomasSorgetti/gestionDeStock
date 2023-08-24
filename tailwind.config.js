@@ -8,7 +8,9 @@ export default {
         inputTextColor: "#4F4F4F80",
         inputBorderColor: "#CDCDCD",
       },
-      fontFamily: {},
+      fontFamily: {
+        sfPro: "SF Pro Display",
+      },
     },
     screens: {
       sm: "640px",

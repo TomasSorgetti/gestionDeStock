@@ -22,7 +22,7 @@ const Login = () => {
     console.log("Token:", authHeader);
   };
   return (
-    <section className="flex items-center h-screen">
+    <section className="flex items-center h-screen font-sfPro">
       <article className="relative h-full w-6/12 bg-primaryColor flex flex-col items-center justify-center">
         <img className="" src={Logo} alt="logo" />
         <div className="absolute bottom-6 w-full text-center">
