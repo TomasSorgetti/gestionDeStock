@@ -10,6 +10,7 @@ export default {
       },
       fontFamily: {
         sfPro: "SF Pro Display",
+        inter: "Inter",
       },
     },
     screens: {
