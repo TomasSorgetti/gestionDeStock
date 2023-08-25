@@ -24,9 +24,9 @@ const Login = () => {
   return (
     <section className="flex items-center h-screen font-sfPro">
       <article className="relative h-full w-6/12 bg-primaryColor flex flex-col items-center justify-center">
-        <img className="" src={Logo} alt="logo" />
+        <img className="w-6/12" src={Logo} alt="logo" />
         <div className="absolute bottom-6 w-full text-center">
-          <p className="text-[26px] font-bold text-white">
+          <p className="text-[30px] font-bold text-white">
             Tené el control de tu negocio
           </p>
         </div>
@@ -68,13 +68,14 @@ const Login = () => {
                 />
               </FloatingLabel>
             </div>
-            <div className="w-full flex justify-center">
+            <div className="w-full flex flex-col items-center gap-2 justify-center">
               <button
                 type="submit"
                 className="bg-primaryColor px-10 py-3 text-white rounded w-8/12 font-bold text-[16px]"
               >
                 Entrar
               </button>
+              <p className="text-primaryColor text-[18px] font-medium">¿Olvidaste la contraseña?</p>
             </div>
             <p className="text-center text-textColor">
               ¿Eres nuevo/a?{" "}
