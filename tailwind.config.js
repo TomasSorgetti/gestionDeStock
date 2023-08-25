@@ -5,6 +5,7 @@ export default {
       colors: {
         primaryColor: "#009ED0",
         textColor: "#535353",
+        grayColor: "#F6F6F6",
         inputTextColor: "#4F4F4F80",
         inputBorderColor: "#CDCDCD",
       },
