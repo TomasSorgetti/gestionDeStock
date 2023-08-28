@@ -2,8 +2,11 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import { Validation } from "./Validation";
+import bcrypt from "bcryptjs"
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Registrarse = () => {
-
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -18,7 +21,6 @@ const Registrarse = () => {
 
   const [passwordVal, setPasswordVal] = useState({password2: ""})
 
-  const formInitial = { ...form };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,17 +32,28 @@ const Registrarse = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(form.password != passwordVal.password2){
-      return alert("las contraseñas no coinsiden")
+    const hashedPassword = bcrypt.hashSync(form.password, 10)
+    if(form.password === passwordVal.password2){
+      try {
+        const URL = "http://localhost:3001/login";
+        const res = await axios.post(URL, { ...form, password: hashedPassword })
+        if (res.status !== 200) throw "error create user"
+        const token = res?.headers["auth-token"];
+        localStorage.setItem("token", token);
+        if (token) navigate("/home");
+      } catch (error) {
+        console.log(error);
+      }
     }
-    return alert("Se envio el formulario ;)")
   };
 
   return (
     <article className="h-full w-6/12 flex flex-col justify-center bg-white font-sfPro">
       <div className="px-20 flex flex-col gap-6">
         <div className="">
-          <h2 className="text-primaryColor mb-0 text-3xl font-bold">Bienvenido</h2>
+          <h2 className="text-primaryColor mb-0 text-3xl font-bold">
+            Bienvenido
+          </h2>
           <span className="text-textColor">Complete sus datos</span>
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">

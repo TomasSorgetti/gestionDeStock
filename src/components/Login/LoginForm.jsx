@@ -2,8 +2,10 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({ setActive }) => {
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -16,10 +18,20 @@ const LoginForm = ({ setActive }) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post("http://localhost:3001/login/validate", form);
-    console.log(res);
-    const authHeader = res.headers["auth-token"];
-    console.log("Token:", authHeader);
+    try {
+      const res = await axios.post(
+        "http://localhost:3001/login/validate",
+        form
+      );
+      if (res.status !== 200) {
+        throw new Error("Error login");
+      }
+      const token = res?.headers["auth-token"]
+      localStorage.setItem("token", token)
+      if(token)navigate("/home")
+    } catch (error) {
+      console.log(error);
+    }
   };
   const activeChange = (event) => {
     const { value } = event.target
