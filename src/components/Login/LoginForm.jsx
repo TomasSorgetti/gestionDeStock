@@ -17,6 +17,7 @@ const LoginForm = ({ setActive }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await axios.post("http://localhost:3001/login/validate", form);
+    console.log(res);
     const authHeader = res.headers["auth-token"];
     console.log("Token:", authHeader);
   };
