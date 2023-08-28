@@ -1,5 +1,6 @@
 import Logo from "../../assets/Logo.png";
 import LoginForm from "../../components/Login/LoginForm";
+import { RecoverPassword } from "../../components/RecoverPassword/RecoverPassword";
 import Registrarse from "../../components/Registrarse/Registrarse";
 import { useState } from "react";
 const Login = () => {
@@ -16,8 +17,8 @@ const Login = () => {
         </div>
       </article>
       {active === "login" && <LoginForm setActive={setActive} />}
-      {active === "register" && <Registrarse setActive={setActive} />}
-      {/* {active === "forgot" &&} */}
+      {active === "register" && <Registrarse />}
+      {active === "forgot" && <RecoverPassword />}
     </section>
   );
 };

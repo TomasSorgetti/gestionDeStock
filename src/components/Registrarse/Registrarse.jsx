@@ -1,9 +1,9 @@
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
-import rubros from "./Rubros";
 import { useState } from "react";
 import { Validation } from "./Validation";
 const Registrarse = () => {
+
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -16,28 +16,38 @@ const Registrarse = () => {
     email: "",
   });
 
+  const [passwordVal, setPasswordVal] = useState({password2: ""})
+
   const formInitial = { ...form };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
     setErr(Validation({ ...form, [name]: value }));
+    setPasswordVal({[name]: value});
   };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(form.password != passwordVal.password2){
+      return alert("las contraseñas no coinsiden")
+    }
+    return alert("Se envio el formulario ;)")
   };
 
   return (
-    <article className="h-full w-6/12 flex flex-col justify-center bg-white">
+    <article className="h-full w-6/12 flex flex-col justify-center bg-white font-sfPro">
       <div className="px-20 flex flex-col gap-6">
         <div className="">
-          <h2 className="text-primaryColor ">Registrate</h2>
+          <h2 className="text-primaryColor mb-0 text-3xl font-bold">Bienvenido</h2>
+          <span className="text-textColor">Complete sus datos</span>
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <FloatingLabel
             controlId="floatingInput"
             label="Correo Electrónico"
-            className="mb-3 text-inputTextColor"
+            className="text-inputTextColor"
           >
             <Form.Control
               value={form.email}
@@ -62,18 +72,6 @@ const Registrarse = () => {
               className=""
             />
           </FloatingLabel>
-          <Form.Select
-            value={form.rubro}
-            name="rubro"
-            aria-label="Floating label select example"
-            onChange={handleChange}
-            className="text-inputTextColor"
-          >
-            <option>Servicios</option>
-            {rubros?.map((item, index) => (
-              <option key={index}>{item}</option>
-            ))}
-          </Form.Select>
           <div className="text-center">
             <FloatingLabel
               controlId="floatingInput"
@@ -94,12 +92,27 @@ const Registrarse = () => {
               ""
             )}
           </div>
+          <div className="text-center">
+            <FloatingLabel
+              controlId="floatingInput"
+              label="Contraseña"
+              className="text-inputTextColor"
+            >
+              <Form.Control
+                type="password"
+                placeholder="Contraseña"
+                name="password2"
+                value={passwordVal.password2}
+                onChange={handleChange}
+              />
+            </FloatingLabel>
+          </div>
           <div className="w-full flex justify-center">
             <button
               type="submit"
-              className="bg-primaryColor px-10 py-2 rounded w-full text-white"
+              className="bg-primaryColor px-10 py-3 text-white rounded w-8/12 font-bold text-[16px]"
             >
-              Entrar
+              Enviar
             </button>
           </div>
         </form>
