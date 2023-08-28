@@ -21,8 +21,9 @@ const LoginForm = ({ setActive }) => {
     const authHeader = res.headers["auth-token"];
     console.log("Token:", authHeader);
   };
-  const activeChange = () => {
-    setActive("register");
+  const activeChange = (event) => {
+    const { value } = event.target
+    value === "register" ? setActive("register") : setActive("forgot") 
   }
   return (
     <article className="h-full w-6/12 flex flex-col justify-center bg-white">
@@ -68,13 +69,20 @@ const LoginForm = ({ setActive }) => {
             >
               Entrar
             </button>
-            <p className="text-primaryColor text-[18px] font-medium">
+            <button 
+              value="forgot"
+              type="button"
+              onClick={activeChange}
+            >
+            <p className="text-primaryColor text-[18px] font-medium hover:underline">
               ¿Olvidaste la contraseña?
             </p>
+            </button>
           </div>
           <p className="text-center text-textColor">
             ¿Eres nuevo/a?{" "}
             <button
+              value="register"
               type="button"
               onClick={activeChange}
               className="font-medium text-primaryColor cursor-pointer"
